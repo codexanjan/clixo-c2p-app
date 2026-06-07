@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer utilities {
+  .gradient-text {
+    background: linear-gradient(135deg, #d946ef 0%, #8b5cf6 50%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-bg {
+    background: linear-gradient(135deg, #d946ef 0%, #8b5cf6 50%, #06b6d4 100%);
+    background-size: 300%;
+    animation: gradient 8s ease infinite;
+  }
+
+  .glass {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .editor-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .editor-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .editor-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 246, 0.3);
+    border-radius: 2px;
+  }
+
+  .editor-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 92, 246, 0.6);
+  }
+}
+
+@keyframes gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Custom glow effects */
+.glow-purple {
+  box-shadow: 0 0 40px rgba(217, 70, 239, 0.15);
+}
+
+.glow-purple-strong {
+  box-shadow: 0 0 60px rgba(217, 70, 239, 0.3), 0 0 120px rgba(139, 92, 246, 0.1);
+}
+
+/* Noise texture overlay */
+.noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Prose styles for markdown */
+.prose-clixo h1 { @apply text-2xl font-bold mb-4 mt-6; }
+.prose-clixo h2 { @apply text-xl font-bold mb-3 mt-5; }
+.prose-clixo h3 { @apply text-lg font-semibold mb-2 mt-4; }
+.prose-clixo p { @apply mb-3 leading-relaxed; }
+.prose-clixo ul { @apply list-disc ml-5 mb-3; }
+.prose-clixo ol { @apply list-decimal ml-5 mb-3; }
+.prose-clixo li { @apply mb-1; }
+.prose-clixo code { @apply font-mono text-sm bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-1 py-0.5 rounded; }
+.prose-clixo pre { @apply bg-gray-900 dark:bg-black rounded-xl p-4 mb-3 overflow-x-auto; }
+.prose-clixo pre code { @apply bg-transparent text-green-400 p-0; }
+.prose-clixo blockquote { @apply border-l-4 border-purple-400 pl-4 italic text-gray-500 dark:text-gray-400 mb-3; }
+.prose-clixo a { @apply text-purple-500 hover:underline; }
+.prose-clixo strong { @apply font-bold; }
+.prose-clixo em { @apply italic; }
+.prose-clixo hr { @apply border-gray-200 dark:border-gray-700 my-4; }
